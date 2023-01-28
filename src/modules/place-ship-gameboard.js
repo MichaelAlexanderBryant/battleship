@@ -1,4 +1,4 @@
-function getGameboardToPlaceShips() {
+function getGameboardToPlaceShips(occupiedCoordinates) {
     let containerDiv = document.getElementById("place-ships");
     let boardDiv = document.createElement('div');
     boardDiv.className = "gameboard";
@@ -9,6 +9,9 @@ function getGameboardToPlaceShips() {
         for (let column = 0; column < 7; column++) {
             let squareDiv = document.createElement('div');
             squareDiv.className = `square row-${row} column-${column}`;
+            if (Object.keys(occupiedCoordinates).includes(`${row},${column}`)){
+                squareDiv.style.backgroundColor = "grey";
+            };
             rowDiv.appendChild(squareDiv);
         }
         boardDiv.appendChild(rowDiv);

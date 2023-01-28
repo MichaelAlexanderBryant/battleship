@@ -6,7 +6,7 @@ const player = require('./factory-functions/player');
 const playerOne = player("human");
 const playerTwo = player("cpu");
 
-getGameboardToPlaceShips();
+getGameboardToPlaceShips([]);
 placeShip(playerOne, [2,3,3,4]);
 
 
