@@ -16,7 +16,7 @@ const player = (playerType) => {
         } else if (playerType == "cpu") {
             let randomCoordinateIndex = Math.floor(Math.random() * squaresNotAttacked.length);
             let attackCoordinate = squaresNotAttacked.splice(randomCoordinateIndex, 1); 
-            return otherPlayer.playerGameboard.receiveAttack(attackCoordinate);
+            return otherPlayer.playerGameboard.receiveAttack(...attackCoordinate);
         }
     };
     return { squaresNotAttacked, playerGameboard, attackEnemy}
