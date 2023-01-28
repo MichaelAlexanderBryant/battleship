@@ -19,18 +19,18 @@ body {
 #place-ships {
     height: 100%;
     grid-row: 2 / 3;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
 
 }
 
-/* #player-container {
+#player-container {
     grid-row: 2 / 3;
     height: 100%;
-    display:grid;
+    display: none;
     grid-template-columns: repeat(2, 1fr);
-} */
+}
 
 #player-one {
     grid-column: 1 / 2;
