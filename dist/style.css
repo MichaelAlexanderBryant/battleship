@@ -16,19 +16,10 @@ body {
     font-size: 100px;
 }
 
-#place-ships {
-    height: 100%;
-    grid-row: 2 / 3;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-
-}
-
 #player-container {
     grid-row: 2 / 3;
     height: 100%;
-    display: none;
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
 

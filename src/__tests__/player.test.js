@@ -3,7 +3,7 @@ const player = require('../factory-functions/player');
 describe('Player factory function', () => {
     let playerOne;
     let playerTwo;
-    beforeEach(() => {
+    beforeEach(() => { 
         playerOne = player("human");
     });
     it('Attack opponent and hit', () => {

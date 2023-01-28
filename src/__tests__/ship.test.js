@@ -2,7 +2,7 @@ const ship = require('../factory-functions/ship');
 
 describe('Ship factory function', () => {
     let testShip;
-    beforeEach(() => {
+    beforeEach(() => { 
         testShip = ship(3);
     });
     it('Accepts a hit', () => {

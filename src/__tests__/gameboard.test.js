@@ -2,20 +2,20 @@ const gameboard = require('../factory-functions/gameboard');
 
 describe('Gameboard factory function', () => {
     let testGameboard;
-    beforeEach(() => { 
+    beforeEach(() => {
         testGameboard = gameboard();
     });
     it('Verify piece can be placed vertically in bounds', () => {
         expect(testGameboard.setShip(2, "vertical", [3,3])).toBe(true);
     });
     it('Verify piece cannot be placed vertically out of bounds', () => {
-        expect(testGameboard.setShip(2, "vertical", [6,0])).toBe(false);
+        expect(testGameboard.setShip(2, "vertical", [9,0])).toBe(false);
     });
     it('Verify piece can be placed horizontally in bounds', () => {
         expect(testGameboard.setShip(2, "horizontal", [3,3])).toBe(true);
     });
     it('Verify piece cannot be placed horizontally out of bounds', () => {
-        expect(testGameboard.setShip(2, "horizontal", [0,6])).toBe(false);
+        expect(testGameboard.setShip(2, "horizontal", [0,9])).toBe(false);
     });
     it('Verify two pieces cannot overlap', () => {
         testGameboard.setShip(2, "vertical", [0,0]);
