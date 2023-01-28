@@ -4,8 +4,8 @@ const player = (playerType) => {
     let playerGameboard = gameboard();
     let squaresNotAttacked= [];
     if (playerType == "cpu") {
-        for (let i = 0; i < 7; i++) {
-            for (let j = 0; j < 7; j++) {
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
                 squaresNotAttacked.push([i,j]);
             };
         };
