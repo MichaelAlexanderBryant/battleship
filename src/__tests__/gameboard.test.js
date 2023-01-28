@@ -1,8 +1,8 @@
-const gameboard = require('../modules/gameboard');
+const gameboard = require('../factory-functions/gameboard');
 
 describe('Gameboard factory function', () => {
     let testGameboard;
-    beforeEach(() => {
+    beforeEach(() => { 
         testGameboard = gameboard();
     });
     it('Verify piece can be placed vertically in bounds', () => {

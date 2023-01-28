@@ -1,7 +1,7 @@
 import { generateGameboard } from "./display-gameboard";
 import { getGameboardToPlaceShips } from "./place-ship-gameboard";
 
-function placeShip(player, shipLengths) {
+function placeHumanShip(player, shipLengths) {
     if (shipLengths.length == 0){
         let container = document.getElementById('place-ships');
         container.remove();
@@ -36,7 +36,7 @@ function placeShip(player, shipLengths) {
                         let container = document.getElementById('place-ships');
                         container.textContent = '';
                         getGameboardToPlaceShips(player.playerGameboard.checkCoordinates);
-                        placeShip(player, shipLengths);
+                        placeHumanShip(player, shipLengths);
                     }
                 })
             }
@@ -44,4 +44,4 @@ function placeShip(player, shipLengths) {
     }
 }
 
-export { placeShip };
+export { placeHumanShip };

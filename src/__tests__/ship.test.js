@@ -1,4 +1,4 @@
-const ship = require('../modules/ship');
+const ship = require('../factory-functions/ship');
 
 describe('Ship factory function', () => {
     let testShip;

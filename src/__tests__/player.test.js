@@ -1,4 +1,4 @@
-const player = require('../modules/player');
+const player = require('../factory-functions/player');
 
 describe('Player factory function', () => {
     let playerOne;
