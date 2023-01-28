@@ -24,7 +24,7 @@ function playGame(playerOne, playerTwo){
                     initializeGame(playerOne, playerTwo);
                     playGame(playerOne, playerTwo);
                 }
-            })
+            }, { once: true })
         };
     };
 };
