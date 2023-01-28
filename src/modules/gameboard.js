@@ -3,6 +3,7 @@ const ship = require('./ship');
 const gameboard = () => {
     let shipsOnGameboard = [];
     let shipCoordinates = [];
+    let checkCoordinates = {};
     let squaresHit = [];
     let squaresMissed = [];
     const setShip = (shipLength, orientation, coordinate) => {
@@ -12,19 +13,33 @@ const gameboard = () => {
         if (orientation == "vertical") {
             if (coordinate[0] + shipLength < 7) {
                 for (let i = 0; i < shipLength; i++) {
-                    newShipCoordinates.push([coordinate[0] + i,coordinate[1]])
+                    if (!(Object.keys(checkCoordinates).includes([coordinate[0] + i,coordinate[1]].toString()))){
+                        newShipCoordinates.push([coordinate[0] + i,coordinate[1]]);
+                    } else {
+                        return false;
+                    };
                 };
                 shipCoordinates.push(newShipCoordinates);
-                return true; 
+                for (let j = 0; j < newShipCoordinates.length; j++) {
+                    checkCoordinates[newShipCoordinates[j].toString()] = true;
+                };
+                return true;  
             } else {
                 return false;
             };
         } else if (orientation == "horizontal") {
             if (coordinate[1] + shipLength < 7){
                 for (let i = 0; i < shipLength; i++) {
-                    newShipCoordinates.push([coordinate[0],coordinate[1] + 1]);
+                    if (!(Object.keys(checkCoordinates).includes([coordinate[0],coordinate[1]+i].toString()))){
+                        newShipCoordinates.push([coordinate[0],coordinate[1] + 1]);
+                    } else {
+                        return false;
+                    }
                 };
                 shipCoordinates.push(newShipCoordinates);
+                for (let j = 0; j < newShipCoordinates.length; j++) {
+                    checkCoordinates[newShipCoordinates[j].toString()] = true;
+                };
                 return true; 
             } else {
                 return false;

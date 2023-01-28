@@ -17,6 +17,10 @@ describe('Gameboard factory functions', () => {
     it('Verify piece cannot be placed horizontally out of bounds', () => {
         expect(testGameboard.setShip(2, "horizontal", [0,6])).toBe(false);
     });
+    it('Verify two pieces cannot overlap', () => {
+        testGameboard.setShip(2, "vertical", [0,0]);
+        expect(testGameboard.setShip(4, "horizontal", [0,0])).toBe(false);
+    });
     it('Verify a successful attack', () => {
         testGameboard.setShip(2, "vertical", [0,0]);
         expect(testGameboard.receiveAttack([0,0])).toBe(true);
