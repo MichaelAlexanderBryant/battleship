@@ -46,7 +46,7 @@ eval("const ship = (length) => {\n    let hits = 0;\n    const hit = () => hits 
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_display_gameboard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/display-gameboard */ \"./src/modules/display-gameboard.js\");\n\nconst player = __webpack_require__(/*! ./factory-functions/player */ \"./src/factory-functions/player.js\");\n\n(0,_modules_display_gameboard__WEBPACK_IMPORTED_MODULE_0__.generateGameboard)(\"player-one\");\n(0,_modules_display_gameboard__WEBPACK_IMPORTED_MODULE_0__.generateGameboard)(\"player-two\");\n// playerOne = player(\"human\");\n// console.log(playerOne);\n\n//# sourceURL=webpack://battleship/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_get_gameboard_to_place_ships__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/get-gameboard-to-place-ships */ \"./src/modules/get-gameboard-to-place-ships.js\");\n/* harmony import */ var _modules_place_ship__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/place-ship */ \"./src/modules/place-ship.js\");\n/* harmony import */ var _modules_display_gameboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/display-gameboard */ \"./src/modules/display-gameboard.js\");\n\n\n\nconst player = __webpack_require__(/*! ./factory-functions/player */ \"./src/factory-functions/player.js\");\n\nconst playerOne = player(\"human\");\nconst playerTwo = player(\"cpu\");\n\n(0,_modules_get_gameboard_to_place_ships__WEBPACK_IMPORTED_MODULE_0__.getGameboardToPlaceShips)();\n(0,_modules_place_ship__WEBPACK_IMPORTED_MODULE_1__.placeShip)(2);\n\n\n\n// generateGameboard(\"player-one\");\n// generateGameboard(\"player-two\");\n\n\n\n//# sourceURL=webpack://battleship/./src/index.js?");
 
 /***/ }),
 
@@ -58,6 +58,28 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"generateGameboard\": () => (/* binding */ generateGameboard)\n/* harmony export */ });\nfunction generateGameboard(player) {\n    let containerDiv = document.getElementById(player);\n    let boardDiv = document.createElement('div');\n    boardDiv.className = \"gameboard\";\n    for (let row = 0; row < 7; row++) {\n        let rowDiv = document.createElement('div');\n        rowDiv.id = `row-${row}`\n        rowDiv.className = \"row\"\n        for (let column = 0; column < 7; column++) {\n            let squareDiv = document.createElement('div');\n            squareDiv.className = `square`;\n            if (player == \"player-two\") {\n                squareDiv.addEventListener(\"click\", () => {\n                    console.log(\"(\" + [row,column].toString() + \")\");\n                });\n            }\n            rowDiv.appendChild(squareDiv);\n        }\n        boardDiv.appendChild(rowDiv);\n    };\n    containerDiv.appendChild(boardDiv);\n};\n\n\n\n//# sourceURL=webpack://battleship/./src/modules/display-gameboard.js?");
+
+/***/ }),
+
+/***/ "./src/modules/get-gameboard-to-place-ships.js":
+/*!*****************************************************!*\
+  !*** ./src/modules/get-gameboard-to-place-ships.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getGameboardToPlaceShips\": () => (/* binding */ getGameboardToPlaceShips)\n/* harmony export */ });\nfunction getGameboardToPlaceShips() {\n    let containerDiv = document.getElementById(\"place-ships\");\n    let boardDiv = document.createElement('div');\n    boardDiv.className = \"gameboard\";\n    for (let row = 0; row < 7; row++) {\n        let rowDiv = document.createElement('div');\n        rowDiv.id = `row-${row}`\n        rowDiv.className = \"row\"\n        for (let column = 0; column < 7; column++) {\n            let squareDiv = document.createElement('div');\n            squareDiv.className = `square row-${row} column-${column}`;\n            rowDiv.appendChild(squareDiv);\n        }\n        boardDiv.appendChild(rowDiv);\n    };\n    containerDiv.appendChild(boardDiv);\n};\n\n\n\n//# sourceURL=webpack://battleship/./src/modules/get-gameboard-to-place-ships.js?");
+
+/***/ }),
+
+/***/ "./src/modules/place-ship.js":
+/*!***********************************!*\
+  !*** ./src/modules/place-ship.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"placeShip\": () => (/* binding */ placeShip)\n/* harmony export */ });\nfunction placeShip(shipSize) {\n    let gameboard = document.getElementsByClassName('gameboard');\n    for (let row = 0; row < 7; row++) {\n        for (let column = 0; column < 7; column++) {\n            gameboard[0][\"childNodes\"][row][\"childNodes\"][column].addEventListener(\"mouseover\", () => {\n                if (row <= 7-shipSize) {\n                    for (let i = 0; i < shipSize; i++) {\n                        gameboard[0][\"childNodes\"][row+i][\"childNodes\"][column].style.backgroundColor = \"grey\";\n                    }\n                }\n            })\n            gameboard[0][\"childNodes\"][row][\"childNodes\"][column].addEventListener(\"mouseleave\", () => {\n                if (row <= 7-shipSize) {\n                    for (let i = 0; i < shipSize; i++) {\n                        gameboard[0][\"childNodes\"][row+i][\"childNodes\"][column].style.backgroundColor = \"white\";\n                    }\n                }\n            })\n            gameboard[0][\"childNodes\"][row][\"childNodes\"][column].addEventListener(\"click\", () => {\n                if (row <= 7-shipSize) {\n                    console.log(\"(\" + row + \",\" + column + \")\");\n                }\n            })\n        }\n    }\n}\n\n\n\n//# sourceURL=webpack://battleship/./src/modules/place-ship.js?");
 
 /***/ })
 
