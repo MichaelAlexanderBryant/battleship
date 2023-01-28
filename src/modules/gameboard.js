@@ -5,14 +5,31 @@ const gameboard = () => {
     let shipCoordinates = [];
     let squaresHit = [];
     let squaresMissed = [];
-    const setShip = (shipLength, coordinate) => {
+    const setShip = (shipLength, orientation, coordinate) => {
         let newShip = ship(shipLength);
         shipsOnGameboard.push(newShip);
-        let newShipCoordinates = []
-        for (let i = 0; i < shipLength; i++) {
-            newShipCoordinates.push([coordinate[0]+i,coordinate[1]])
-        }
-        shipCoordinates.push(newShipCoordinates);        
+        let newShipCoordinates = [];
+        if (orientation == "vertical") {
+            if (coordinate[0] + shipLength < 7) {
+                for (let i = 0; i < shipLength; i++) {
+                    newShipCoordinates.push([coordinate[0] + i,coordinate[1]])
+                };
+                shipCoordinates.push(newShipCoordinates);
+                return true; 
+            } else {
+                return false;
+            };
+        } else if (orientation == "horizontal") {
+            if (coordinate[1] + shipLength < 7){
+                for (let i = 0; i < shipLength; i++) {
+                    newShipCoordinates.push([coordinate[0],coordinate[1] + 1]);
+                };
+                shipCoordinates.push(newShipCoordinates);
+                return true; 
+            } else {
+                return false;
+            };
+        }; 
     };
     const receiveAttack = (coordinate) => {
         for (let i = 0; i < shipCoordinates.length; i++){
