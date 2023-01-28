@@ -43,54 +43,9 @@ eval("const ship = (length) => {\n    let hits = 0;\n    const hit = () => hits 
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_place_ship_gameboard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/place-ship-gameboard */ \"./src/modules/place-ship-gameboard.js\");\n/* harmony import */ var _modules_place_human_ship__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/place-human-ship */ \"./src/modules/place-human-ship.js\");\n/* harmony import */ var _modules_place_computer_ships__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/place-computer-ships */ \"./src/modules/place-computer-ships.js\");\n\n\n\nconst player = __webpack_require__(/*! ./factory-functions/player */ \"./src/factory-functions/player.js\");\n\nconst playerOne = player(\"human\");\nconst playerTwo = player(\"cpu\");\n\n(0,_modules_place_ship_gameboard__WEBPACK_IMPORTED_MODULE_0__.getGameboardToPlaceShips)([]);\n(0,_modules_place_human_ship__WEBPACK_IMPORTED_MODULE_1__.placeHumanShip)(playerOne, [4,3,3,2]);\n(0,_modules_place_computer_ships__WEBPACK_IMPORTED_MODULE_2__.placeComputerShips)(playerTwo);\n\n\n\n\n\n\n\n//# sourceURL=webpack://battleship/./src/index.js?");
-
-/***/ }),
-
-/***/ "./src/modules/display-gameboard.js":
-/*!******************************************!*\
-  !*** ./src/modules/display-gameboard.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"generateGameboard\": () => (/* binding */ generateGameboard)\n/* harmony export */ });\nfunction generateGameboard(player, occupiedCoordinates) {\n    let containerDiv = document.getElementById(player);\n    let boardDiv = document.createElement('div');\n    boardDiv.className = \"gameboard\";\n    for (let row = 0; row < 7; row++) {\n        let rowDiv = document.createElement('div');\n        rowDiv.id = `row-${row}`\n        rowDiv.className = \"row\"\n        for (let column = 0; column < 7; column++) {\n            let squareDiv = document.createElement('div');\n            squareDiv.className = `square`;\n            if (player == \"player-one\") {\n                if (Object.keys(occupiedCoordinates).includes(`${row},${column}`)){\n                    squareDiv.style.backgroundColor = \"grey\";\n                };\n            }else if (player == \"player-two\") {\n                squareDiv.addEventListener(\"click\", () => {\n                    console.log(\"(\" + [row,column].toString() + \")\");\n                });\n            }\n            rowDiv.appendChild(squareDiv);\n        }\n        boardDiv.appendChild(rowDiv);\n    };\n    containerDiv.appendChild(boardDiv);\n};\n\n\n\n//# sourceURL=webpack://battleship/./src/modules/display-gameboard.js?");
-
-/***/ }),
-
-/***/ "./src/modules/place-computer-ships.js":
-/*!*********************************************!*\
-  !*** ./src/modules/place-computer-ships.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"placeComputerShips\": () => (/* binding */ placeComputerShips)\n/* harmony export */ });\nfunction placeComputerShips(player) {\n    let allSquares = [];\n    for (let i = 0; i < 7; i++) {\n        for (let j = 0; j < 7; j++) {\n            allSquares.push([i,j]);\n        };\n    };\n    let shipLengths = [4, 3, 3, 2];\n    let orientations = [\"vertical\", \"horizontal\"];\n    while (shipLengths.length != 0) {\n        let randomOrientationIndex = Math.floor(Math.random() * orientations.length);\n        let randomOrientation = orientations[randomOrientationIndex];\n        let randomCoordinateIndex = Math.floor(Math.random() * allSquares.length);\n        let randomCoordinate = allSquares[randomCoordinateIndex];\n        if(player.playerGameboard.setShip(shipLengths[0], \"vertical\", randomCoordinate)) {\n            shipLengths.shift();\n            console.log(randomOrientation)\n        }\n    }\n    console.log(player.playerGameboard.checkCoordinates);\n};\n\n\n\n\n//# sourceURL=webpack://battleship/./src/modules/place-computer-ships.js?");
-
-/***/ }),
-
-/***/ "./src/modules/place-human-ship.js":
-/*!*****************************************!*\
-  !*** ./src/modules/place-human-ship.js ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"placeHumanShip\": () => (/* binding */ placeHumanShip)\n/* harmony export */ });\n/* harmony import */ var _display_gameboard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./display-gameboard */ \"./src/modules/display-gameboard.js\");\n/* harmony import */ var _place_ship_gameboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./place-ship-gameboard */ \"./src/modules/place-ship-gameboard.js\");\n\n\n\nfunction placeHumanShip(player, shipLengths) {\n    if (shipLengths.length == 0){\n        let container = document.getElementById('place-ships');\n        container.remove();\n        let playerContainer = document.getElementById('player-container');\n        playerContainer.style.display = \"grid\";\n        (0,_display_gameboard__WEBPACK_IMPORTED_MODULE_0__.generateGameboard)(\"player-one\", player.playerGameboard.checkCoordinates);\n        (0,_display_gameboard__WEBPACK_IMPORTED_MODULE_0__.generateGameboard)(\"player-two\", {});\n    }\n    else {\n        let shipSize = shipLengths.shift()\n        let gameboard = document.getElementsByClassName('gameboard');\n        for (let row = 0; row < 7; row++) {\n            for (let column = 0; column < 7; column++) {\n                gameboard[0][\"childNodes\"][row][\"childNodes\"][column].addEventListener(\"mouseover\", () => {\n                    if (row <= 7-shipSize) {\n                        for (let i = 0; i < shipSize; i++) {\n                            gameboard[0][\"childNodes\"][row+i][\"childNodes\"][column].style.backgroundColor = \"grey\";\n                        }\n                    }\n                })\n                gameboard[0][\"childNodes\"][row][\"childNodes\"][column].addEventListener(\"mouseleave\", () => {\n                    if (row <= 7-shipSize) {\n                        for (let i = 0; i < shipSize; i++) {\n                            if(!(Object.keys(player.playerGameboard.checkCoordinates).includes(`${row+i},${column}`))) {\n                                gameboard[0][\"childNodes\"][row+i][\"childNodes\"][column].style.backgroundColor = \"white\";\n                            };\n                        }\n                    }\n                })\n                gameboard[0][\"childNodes\"][row][\"childNodes\"][column].addEventListener(\"click\", () => {\n                    if (player.playerGameboard.setShip(shipSize, \"vertical\", [row, column])) {\n                        let container = document.getElementById('place-ships');\n                        container.textContent = '';\n                        (0,_place_ship_gameboard__WEBPACK_IMPORTED_MODULE_1__.getGameboardToPlaceShips)(player.playerGameboard.checkCoordinates);\n                        placeHumanShip(player, shipLengths);\n                    }\n                })\n            }\n        }\n    }\n}\n\n\n\n//# sourceURL=webpack://battleship/./src/modules/place-human-ship.js?");
-
-/***/ }),
-
-/***/ "./src/modules/place-ship-gameboard.js":
-/*!*********************************************!*\
-  !*** ./src/modules/place-ship-gameboard.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getGameboardToPlaceShips\": () => (/* binding */ getGameboardToPlaceShips)\n/* harmony export */ });\nfunction getGameboardToPlaceShips(occupiedCoordinates) {\n    let containerDiv = document.getElementById(\"place-ships\");\n    let boardDiv = document.createElement('div');\n    boardDiv.className = \"gameboard\";\n    for (let row = 0; row < 7; row++) {\n        let rowDiv = document.createElement('div');\n        rowDiv.id = `row-${row}`\n        rowDiv.className = \"row\"\n        for (let column = 0; column < 7; column++) {\n            let squareDiv = document.createElement('div');\n            squareDiv.className = `square row-${row} column-${column}`;\n            if (Object.keys(occupiedCoordinates).includes(`${row},${column}`)){\n                squareDiv.style.backgroundColor = \"grey\";\n            };\n            rowDiv.appendChild(squareDiv);\n        }\n        boardDiv.appendChild(rowDiv);\n    };\n    containerDiv.appendChild(boardDiv);\n};\n\n\n\n//# sourceURL=webpack://battleship/./src/modules/place-ship-gameboard.js?");
+eval("const player = __webpack_require__(/*! ./factory-functions/player */ \"./src/factory-functions/player.js\");\n\nconst playerOne = player(\"human\");\nconst playerTwo = player(\"cpu\");\n\n\n\n\n\n\n//# sourceURL=webpack://battleship/./src/index.js?");
 
 /***/ })
 
@@ -119,35 +74,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
 /******/ 	
 /************************************************************************/
 /******/ 	
