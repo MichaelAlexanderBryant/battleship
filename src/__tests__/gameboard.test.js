@@ -1,6 +1,6 @@
 const gameboard = require('../modules/gameboard');
 
-describe('Gameboard factory functions', () => {
+describe('Gameboard factory function', () => {
     let testGameboard;
     beforeEach(() => {
         testGameboard = gameboard();
