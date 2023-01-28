@@ -1,0 +1,33 @@
+body {
+    height: 100vh;
+}
+
+#player-container {
+    height: 100%;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#player-one {
+    grid-column: 1 / 2;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#player-two {
+    grid-column: 2 / 3;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+}
+
+.square {
+    height: 60px;
+    width: 60px;
+    border: 1px solid black;
+}
