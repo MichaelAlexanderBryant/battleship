@@ -1,5 +1,6 @@
 function displayEmptyGameboard(playerNumber) {
     let containerDiv = document.getElementById(playerNumber);
+    containerDiv.textContent = '';
     let boardDiv = document.createElement('div');
     boardDiv.className = "gameboard";
     for (let row = 0; row < 10; row++) {
