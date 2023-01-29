@@ -11,7 +11,6 @@ function playGame(playerOne, playerTwo){
                 addAttackToGameboard(playerTwo, "player-two");
                 playerTwo.attackEnemy(playerOne);
                 addAttackToGameboard(playerOne, "player-one");
-                console.log(playerTwo.playerGameboard.shipsOnGameboard);
                 if (playerOne.playerGameboard.allShipsDestroyed()) {
                     alert('You lost!');
                     let playerOne = player("human");
