@@ -17,8 +17,6 @@ function randomizeComputerShips(playerTwo, shipLengths) {
             ship = ship + 1
         };
     };
-    console.log(playerTwo.playerGameboard.shipCoordinates)
-    console.log(playerTwo.playerGameboard.shipsOnGameboard)
 };
 
 export { randomizeComputerShips };
