@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>battleship</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="title-container">BATTLESHIP</div>
+    <div id="ship-placement-container">
+        <div id="orientation">
+            <div id="vertical-input-label">
+                <input type="radio" id="vertical-button" name="orientation" value="vertical" checked>
+                <label for="vertical">Vertical</label>
+            </div>
+            <div id="horizontal-input-label">
+                <input type="radio" id="horizontal-button" name="orientation" value="horizontal">
+                <label for="horizontal">Horizontal</label>
+            </div>
+        </div>
+        <div id="place-ships"></div>
+    </div>
+    <div id="player-container">
+        <div id="player-one"></div>
+        <div id="player-two"></div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
