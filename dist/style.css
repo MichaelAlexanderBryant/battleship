@@ -20,8 +20,21 @@ body {
     grid-row: 2 / 3;
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#orientation {
+    display: flex;
+    padding-bottom: 20px;
+}
+
+#vertical-input-label {
+    padding-right: 20px;
+}
+#horizontal-input-label {
+    padding-left: 20px;
 }
 
 #player-container {

@@ -8,8 +8,11 @@ function selectHumanShips(playerOne, shipLengths) {
     for (let row = 0; row < 10; row++) {
         for (let column = 0; column < 10; column++) {
             gameboardRows[row]["childNodes"][column].addEventListener("click", () => {
+                let radioButton = document.getElementById('vertical-button')
+                let orientation;
+                radioButton.checked == true ? orientation = "vertical" : orientation = "horizontal";
                 if (playerOne.playerGameboard.setShip(shipLengths[idx],"vertical", [row, column])) {
-                    addShipToGameboard(shipLengths[idx], "vertical", [row, column])
+                    addShipToGameboard(shipLengths[idx], orientation, [row, column])
                     idx = idx + 1
                     if (shipLengths.length == idx) {
                         let placementContainer = document.getElementById('ship-placement-container');
