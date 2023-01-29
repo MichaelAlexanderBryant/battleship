@@ -68,7 +68,7 @@ const gameboard = () => {
         };
         return true;
     }
-    return { setShip, receiveAttack, allShipsDestroyed, squaresHit, squaresMissed, shipCoordinates, shipsOnGameboard};
+    return { setShip, receiveAttack, allShipsDestroyed, squaresHit, squaresMissed, shipCoordinates, shipsOnGameboard, checkCoordinates};
 };
 
 module.exports = gameboard;
