@@ -23,7 +23,7 @@ describe('Player factory function', () => {
     });
     it('Have CPU attack 49 times and never choose same square repeatedly', () => {
         playerTwo = player("cpu");
-        for (let i = 0; i < 49; i++) {
+        for (let i = 0; i < 100; i++) {
             playerTwo.attackEnemy(playerOne)
         };
         expect(playerTwo.squaresNotAttacked.length).toBe(0);

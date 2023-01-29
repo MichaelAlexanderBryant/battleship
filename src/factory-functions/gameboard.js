@@ -8,7 +8,6 @@ const gameboard = () => {
     let squaresMissed = [];
     const setShip = (shipLength, orientation, coordinate) => {
         let newShip = ship(shipLength);
-        shipsOnGameboard.push(newShip);
         let newShipCoordinates = [];
         if (orientation == "vertical") {
             if (coordinate[0] + shipLength-1 < 10) {
@@ -23,6 +22,7 @@ const gameboard = () => {
                 for (let j = 0; j < newShipCoordinates.length; j++) {
                     checkCoordinates[newShipCoordinates[j].toString()] = true;
                 };
+                shipsOnGameboard.push(newShip);
                 return true;  
             } else {
                 return false;
@@ -40,6 +40,7 @@ const gameboard = () => {
                 for (let j = 0; j < newShipCoordinates.length; j++) {
                     checkCoordinates[newShipCoordinates[j].toString()] = true;
                 };
+                shipsOnGameboard.push(newShip);
                 return true; 
             } else {
                 return false;
@@ -67,7 +68,7 @@ const gameboard = () => {
         };
         return true;
     }
-    return { setShip, receiveAttack, allShipsDestroyed, squaresHit, squaresMissed };
+    return { setShip, receiveAttack, allShipsDestroyed, squaresHit, squaresMissed, shipsOnGameboard};
 };
 
 module.exports = gameboard;
