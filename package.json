@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --mode=development",
     "test": "jest -c jest.config.js",
-    "watch": "jest --watch -c jest.config.js"
+    "watch": "jest --watch -c jest.config.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
