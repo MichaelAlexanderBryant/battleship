@@ -9,7 +9,7 @@ function addShipToGameboard(length, orientation, shipCoordinate) {
     } else {
         for (let i = 0; i < length; i++) {
             shipPlacementBoard[shipCoordinate[0]]["childNodes"][shipCoordinate[1]+i].style.backgroundColor = "grey";
-            playerBoard[shipCoordinate[0]+i]["childNodes"][shipCoordinate[1]].style.backgroundColor = "grey";
+            playerBoard[shipCoordinate[0]]["childNodes"][shipCoordinate[1]+i].style.backgroundColor = "grey";
         };
     };
 };
