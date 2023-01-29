@@ -11,7 +11,7 @@ function selectHumanShips(playerOne, shipLengths) {
                 let radioButton = document.getElementById('vertical-button')
                 let orientation;
                 radioButton.checked == true ? orientation = "vertical" : orientation = "horizontal";
-                if (playerOne.playerGameboard.setShip(shipLengths[idx],"vertical", [row, column])) {
+                if (playerOne.playerGameboard.setShip(shipLengths[idx], orientation, [row, column])) {
                     addShipToGameboard(shipLengths[idx], orientation, [row, column])
                     idx = idx + 1
                     if (shipLengths.length == idx) {
